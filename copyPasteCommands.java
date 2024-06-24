@@ -7,6 +7,8 @@ import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 
+import java.time.Duration;
+
 public class copyPasteCommands {
     private WebDriver driver = new ChromeDriver();
 
@@ -22,6 +24,7 @@ public class copyPasteCommands {
 
     @Test
     public void keyboardActionsTest() {
+        driver.manage().window().maximize();
         driver.get(SITE);
 
         WebElement usernameEl = driver.findElement(By.name("username"));
@@ -40,6 +43,7 @@ public class copyPasteCommands {
                 .keyUp(Keys.SHIFT)
                 .keyDown(cmdCtrl)
                 .sendKeys("xvv")
+                .pause(Duration.ofSeconds(5))
                 .keyUp(cmdCtrl)
                 .sendKeys(passwordEl, "password123")
                 .sendKeys(commentsEl, "Some comments here")
